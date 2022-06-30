@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/30 16:05:42 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:11:27 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	main(int ac, char **av, char **env)
 			
 		// }
 		//----------------------------------------- print data 
-		proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
+		if (buffer)
+			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
 		free_data(&(shell.data));
 		free_data3(&(shell.cmd));
 		printf("\033[0;33m----------------------------\n");

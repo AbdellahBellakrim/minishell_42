@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
+#    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/30 16:04:53 by abellakr         ###   ########.fr        #
+#    Updated: 2022/06/30 16:14:33 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,6 @@ $(NAME) : $(OBJ)
 	@make -C ./libft
 	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean
-	@./minishell
-
 clean : 
 	@make clean -C ./libft
 	@rm -f $(OBJ)
