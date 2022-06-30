@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/30 20:02:02 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:08:46 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int ft_cd(t_shell *shell)
 	if (!path)
 	{
 		//	if !HOME -> bash : cd : HOME not set
-		var = get_env_var(shell->env, "HOME");
+		var = get_env_var(&shell->env, "HOME");
 		if (var)
 		{
 			printf("***	%s : [ %s ]\n", var->var, var->value);
