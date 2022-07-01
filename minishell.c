@@ -6,23 +6,20 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/01 02:41:04 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:12:18 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //--------------------------------------------------------- main
-int	main(int ac, char **av, char **env)
+int	main(void)
 {
 	char	*buffer;
 	t_shell	shell;
+	extern char **environ; // test this system var 
 
-	if (!env || !env[0])
-		return (write(2, "empty env\n", 10), 1);
-	ac = 0;
-	av = NULL;
-	shell.env = get_env(env);
+	shell.env = get_env(environ);
 	check_in_env(&shell);
 	while (1)
 	{
