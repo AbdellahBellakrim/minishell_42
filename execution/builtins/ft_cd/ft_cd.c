@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/06/30 20:08:46 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/01 02:47:01 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	update_wd(t_env **env, char *old, char *current)
 int ft_cd(t_shell *shell)
 {
 	char	*path;
-	char	*old;
-	char	*current;
+	// char	*old; // this one too
+	// char	*current; //sat rah khliti lia had kaydir error unused var that's why i comment it
 	t_env	*var;
 
 	path = shell->cmd->cmd_flags[1];
