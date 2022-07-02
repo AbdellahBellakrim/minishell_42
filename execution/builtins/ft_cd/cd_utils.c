@@ -1,37 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 20:41:48 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 02:23:00 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/07/01 23:09:49 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/07/02 00:54:24 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/execution.h"
 
-int	ft_env(t_shell *shell)
+int	check_path(char *path)
+{
+	if (path && path[0])
+	{
+		if (path[0] == '-' && ft_strlen(path) > 1)
+			return (1);
+	}
+	return (0);
+}
+
+int	update_wd(t_env **env, char *old, char *current)
 {
 	t_env	*head;
 
-	if (shell->cmd->cmd_flags[1] != NULL)
+	head = get_env_var((*env), "OLDPWD");
+	if (head)
 	{
-		error_cmd_arg(&shell->env, "env", shell->cmd->cmd_flags[1], NSFD);
-		return (1);
+		free(head->value);
+		head->value = ft_strdup(old);
 	}
-	head = shell->env->next;
-	while (head)
+	head = get_env_var((*env), "PWD");
+	if (head)
 	{
-		if (head->if_in_env == 1)
-		{
-			ft_putstr_fd(head->var, STDOUT);
-			ft_putchar_fd('=', STDOUT);
-			ft_putendl_fd(head->value, STDOUT);
-		}
-		head = head->next;
+		free(head->value);
+		head->value = ft_strdup(current);
 	}
-	ft_status(&shell->env, SUCC_STAT);
 	return (0);
+}
+
+char	*get_wd(void)
+{
+	char	cwd[PATH_MAX];
+
+	return (getcwd(cwd, sizeof(cwd)));
 }
