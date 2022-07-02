@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/01 18:12:18 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/02 18:32:19 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(void)
 			shell.env->value = ft_strdup("-1");
 		}
 		expander(&shell);
+		heredoc_first(&shell);
 		//----------------------------- print data
 		// printf("\n........................................................list of data\n");
 		// while(shell.data)
@@ -60,9 +61,9 @@ int	main(void)
 			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
 		free_data(&(shell.data));
 		free_data3(&(shell.cmd));
-		// printf("\033[0;33m----------------------------\n");
-		// system("leaks minishell");
-		// printf("\n----------------------------\n\033[0m");
+		printf("\033[0;33m----------------------------\n");
+		system("leaks minishell");
+		printf("\n----------------------------\n\033[0m");
 	}
 	free_data2(&(shell.env));
 	return (0);

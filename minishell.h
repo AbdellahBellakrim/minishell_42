@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 23:41:21 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/02 18:19:48 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,8 @@ t_cmd	*ft_lstnew_cmd(char **cmd_flags);
 void	ft_lstadd_back_cmd(t_cmd **lst, t_cmd *new);
 t_cmd	*ft_lstlast_cmd(t_cmd **lst);
 void	free_data3(t_cmd **cmd);
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ new
+void    heredoc_first(t_shell *shell);
+int     file_number(t_data *data);
+void create_files(int number);
 #endif
