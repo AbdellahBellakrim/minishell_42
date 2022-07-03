@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 02:41:00 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/03 03:49:55 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:37:42 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int	main(void)
 		}
 		expander(&shell);
 		heredoc_first(&shell);
-		//----------------------------- print data
+		// //----------------------------- print data
+		// t_data	*head_data = shell.data;
+		// t_cmd	*head_cmd = shell.cmd;
 		// printf("\n........................................................list of data\n");
 		// while(shell.data)
 		// {
@@ -52,6 +54,7 @@ int	main(void)
 		// 	shell.data = shell.data->next;
 		// }
 		// printf("\n........................................................table of cmds\n");
+
 		// while(shell.cmd)
 		// {
 		// 	int i = 0;
@@ -64,7 +67,9 @@ int	main(void)
 		// 	shell.cmd = shell.cmd->next;
 			
 		// }
-		//----------------------------------------- print data 
+		// shell.data = head_data;
+		// shell.cmd = head_cmd;
+		// //----------------------------------------- print data 
 		if (shell.data)
 			proccess_buff(&shell);  // hadi rah kadir segfault f syntax error o chi cmd makhdamach
 		free_data(&(shell.data));
