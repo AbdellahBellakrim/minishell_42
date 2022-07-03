@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/02 18:19:48 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/03 02:46:24 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ void	free_data3(t_cmd **cmd);
 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ new
 void    heredoc_first(t_shell *shell);
 int     file_number(t_data *data);
-void create_files(int number);
+char    **create_files(int number);
+void	start_here_doc(char *file_name, char *limiter);
+void	delete_here_doc_files(char **file_names);
 #endif

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/07/01 02:52:17 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/07/03 03:03:47 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,3 +144,7 @@ char	*rest_finder(char **string)
 	free(*string);
 	return (rest);
 }
+// norme this 
+// check abort and segafault
+// leaks
+// signals of heredoc

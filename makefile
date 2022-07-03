@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/07/02 17:34:11 by abellakr         ###   ########.fr        #
+#    Updated: 2022/07/03 01:38:39 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	clear
 	@echo  $(BPurple)"------------------------------------------------"$(Color_Off)
 	@echo
 	@echo  $(BPurple)"	minishell by group sbaksi : done! "$(Color_Off)
@@ -80,7 +79,6 @@ $(NAME) : $(OBJ)
 	@make -C ./libft
 	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean
-	./minishell
 
 clean : 
 	@make clean -C ./libft
