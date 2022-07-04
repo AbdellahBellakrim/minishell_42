@@ -6,11 +6,14 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:45:06 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/02 23:03:52 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 00:49:35 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/execution.h"
+
+// waitpid(pid, &status, 0);
+// WEXITSTATUS(status) ==> EXIT_STATUS ;
 
 int	proccess_cmd(t_shell *shell, char *cmd)
 {
@@ -24,8 +27,8 @@ int	proccess_cmd(t_shell *shell, char *cmd)
 		ft_pwd(shell);
 	else if (!ft_strcmp(cmd, "export"))
 		ft_export(shell);
-	// else if (!ft_strcmp(cmd, "exit"))
-	// 	ft_exit(shell);
+	else if (!ft_strcmp(cmd, "exit"))
+		ft_exit(shell);
 	else if (!ft_strcmp(cmd, "unset"))
 		ft_unset(shell);
 	else

@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:58 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 03:43:21 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/04 05:08:58 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //	***********		Includes	*********** :
 # include "../../minishell.h"
-
+# include "paths.h"
 //	***********		DEFINES		*********** :
 # define SUCC_STAT "0"
 # define FAIL_STAT "1"
@@ -24,9 +24,11 @@
 # define STDOUT 1
 # define STDERROR 2
 # define NSFD "No such file or directory"
+# define TMA "Too many arguments"
 # define NVI "Not a valid identifier"
 # define HNS "HOME not set"
 # define ONS "OLDPWD not set"
+# define NAR "Numeric argument required"
 
 //	***********		Functions	*********** :
 //	********		 ERRORS		******** :
@@ -42,6 +44,7 @@ int		proccess_cmd(t_shell *shell, char	*cmd);
 int		proccess_buff(t_shell *shell);
 	//	->	Checking :
 void	check_in_env(t_shell *shell);
+void	check_set_env(t_shell *shell);
 //	********		BUILTINS	******** :
 //*	->	ft_echo :
 int		ft_echo(t_shell *shell);
@@ -80,9 +83,11 @@ int		update_wd(t_env **env, char *old, char *current);
 int		check_path(char *path);
 //*	->	ft_unset :
 int		ft_unset(t_shell *shell);
-int 	valid_unset_name(char *name);
-void    unset_var(t_env **var);
-void    free_env_node(t_env *node);
+int		valid_unset_name(char *name);
+void	unset_var(t_env **var);
+void	free_env_node(t_env *node);
 //*	->	ft_exit :
-int		ft_exit(t_shell *shell);
+void	ft_exit(t_shell *shell);
+int		check_exit_args(char **cmd_flags);
+int		ft_atoi_max(const char *str);
 #endif
