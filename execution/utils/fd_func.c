@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   fd_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 20:42:31 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/04 20:27:43 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/07/06 10:22:03 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/07/06 10:41:42 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/execution.h"
+#include "../headers/execution.h"
 
-int	ft_pwd(t_shell *shell)
+t_fd	*lst_fd_new(int fd)
 {
-	char	*path;
-	t_env	*head;
-	char	cwd[PATH_MAX];
+	t_fd	*new;
 
-	path = getcwd(cwd, sizeof(cwd));
-	if (path)
-	{	
-		ft_putendl_fd(path, 1);
-		ft_status(&shell->env, SUCC_STAT);
-	}
-	else if (!path)
-	{
-		head = get_env_var(shell->env, "?_PWD");
-		ft_putendl_fd(head->value, 1);
-		ft_status(&shell->env, SUCC_STAT);
-	}
+	new = ft_calloc(1, sizeof(*new));
+	new->fd = ft_calloc(1, sizeof(int));
+	new->fd = &fd;
+	new->next = NULL;
+	return (new);
+}
+
+t_fd	*last_fd(t_fd *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+void	add_fd_back(t_fd **lst, t_fd *new)
+{
+	if (!(*lst))
+		(*lst) = new;
 	else
-		ft_status(&shell->env, FAIL_STAT);
-	return (0);
+		last_fd((*lst))->next = new;
 }

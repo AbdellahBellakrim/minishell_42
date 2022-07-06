@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
+#    By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/07/03 01:38:39 by abellakr         ###   ########.fr        #
+#    Updated: 2022/07/06 13:09:27 by mbenbajj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,12 @@ CFlAGS = -Wall -Wextra -Werror
 
 HEADS = headers/includes.h headers/macros.h headers/structs.h execution/headers/execution.h
 
-READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
+READ_FLAGS    =  -I $(shell brew --prefix readline)/include \
+				-L$(shell brew --prefix readline)/lib -lreadline -lhistory
 
-EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c execution/utils/ft_utils.c execution/utils/ft_errors.c \
+EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c execution/utils/ft_utils.c \
+			execution/utils/ft_errors.c execution/utils/analyse_exec.c execution/utils/execute_cmd.c \
+			execution/utils/execution_func.c execution/utils/signals.c\
 			execution/builtins/ft_echo/ft_echo.c execution/builtins/ft_env/ft_env.c execution/builtins/ft_exit/ft_exit.c \
 			execution/builtins/ft_export/ft_export.c execution/builtins/ft_export/sort_env_utils.c \
 			execution/builtins/ft_export/add_env_var.c execution/builtins/ft_export/add_var_utils.c execution/builtins/ft_export/sorted_env.c\
@@ -59,14 +62,14 @@ EXEC_SRC = execution/utils/proccess_buffer.c execution/utils/ft_check.c executio
 
 LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
 		./expander/expander.c ./expander/expander_utils1.c ./expander/get_env.c ./expander/expande_variable.c ./expander/expander_utils2.c \
-		./expander/expander_utils3.c ./lexer/lexer_third_part.c ./lexer/lexer_part_four.c ./heredoc/heredoc_first.c
+		./expander/expander_utils3.c ./lexer/lexer_third_part.c ./lexer/lexer_part_four.c ./heredoc/heredoc_first.c ./heredoc/heredoc_sec.c
 
 SRC = $(LEX_SRC) $(EXEC_SRC)	
 
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c $(SRC) $(HEADS)
-	@$(CC) $(CFlAGS) -c $< -o $@
+	@$(CC) -I $(shell brew --prefix readline)/include $(CFlAGS) -c $< -o $@
 
 all : $(NAME)
 

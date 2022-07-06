@@ -6,7 +6,7 @@
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 13:44:34 by mbenbajj          #+#    #+#             */
-/*   Updated: 2022/07/03 15:18:12 by mbenbajj         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:08:01 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,33 +76,32 @@ int	chdir_path(t_shell *shell, char *path)
 		error_cd(&shell->env, path, NSFD);
 		return (1);
 	}
+	ft_status(&shell->env, SUCC_STAT);
 	return (0);
 }
 
-int	ft_cd(t_shell *shell)
+void	chdir_cases(t_shell *shell, char *path)
 {
-	char	*path;
-	char	*old;
-	char	*current;
-
-	path = shell->cmd->cmd_flags[1];
-	if (check_path(path) || shell->cmd->cmd_flags[2])
-	{
-		if (shell->cmd->cmd_flags[2])
-			error_cd(&shell->env, NULL, TMA);
-		ft_status(&shell->env, "1");
-		return (1);
-	}
-	old = ft_strdup(get_wd());
 	if (!path)
 		chdir_home(shell);
 	else if (!ft_strcmp(path, "-"))
 		chdir_old(shell);
 	else
 		chdir_path(shell, path);
-	current = ft_strdup(get_wd());
-	update_wd(&shell->env, old, current);
-	free(old);
-	free(current);
+}
+
+int	ft_cd(t_shell *shell)
+{
+	char	*path;
+
+	path = shell->cmd->cmd_flags[1];
+	if (check_path(path) || shell->cmd->cmd_flags[2])
+	{
+		if (shell->cmd->cmd_flags[1] && shell->cmd->cmd_flags[2])
+			error_cd(&shell->env, NULL, TMA);
+		ft_status(&shell->env, "1");
+		return (1);
+	}
+	dir_chr(shell, path);
 	return (0);
 }
